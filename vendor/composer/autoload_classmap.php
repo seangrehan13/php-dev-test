@@ -6,4 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'BackendApp\\Ads\\AdsInjector' => $baseDir . '/src/Ads/AdsInjector.php',
+    'BackendApp\\Ads\\AdsInjectorInterface' => $baseDir . '/src/Ads/AdsInjectorInterface.php',
+    'BackendApp\\Ads\\Widgets\\Embed' => $baseDir . '/src/Ads/Widgets/Embed.php',
+    'BackendApp\\Ads\\Widgets\\Paragraph' => $baseDir . '/src/Ads/Widgets/Paragraph.php',
+    'BackendApp\\Ads\\Widgets\\RelatedArticles' => $baseDir . '/src/Ads/Widgets/RelatedArticles.php',
+    'BackendApp\\Ads\\Widgets\\WidgetFactory' => $baseDir . '/src/Ads/Widgets/WidgetFactory.php',
+    'BackendApp\\Ads\\Widgets\\WidgetInterface' => $baseDir . '/src/Ads/Widgets/WidgetInterface.php',
+    'BackendApp\\BackendApp' => $baseDir . '/src/BackendApp.php',
+    'BackendApp\\Repository\\Repository' => $baseDir . '/src/Repository/Repository.php',
+    'BackendApp\\Repository\\RepositoryInterface' => $baseDir . '/src/Repository/RepositoryInterface.php',
 );

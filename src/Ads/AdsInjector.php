@@ -21,10 +21,21 @@ class AdsInjector implements AdsInjectorInterface
 		}
 
 		$points = 0;
+		$widgetsWithAds = [];
+
 		foreach ($article['widgets'] as $widget) {
 			$class = $this->factory->create($widget['layout']);
 			$points += $class->getPointsValue($widget);
+
+			if ($points >= $this->POINTS) {
+				$points = 0;
+				$widgetsWithAds[] = ['layout' => 'ad'];
+			}
+
+			$widgetsWithAds[] = $widget;
 		}
+
+		$article['widgets'] = $widgetsWithAds;
 
 		return $article;
 	}
