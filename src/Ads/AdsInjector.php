@@ -27,7 +27,7 @@ class AdsInjector implements AdsInjectorInterface
 			$class = $this->factory->create($widget['layout']);
 			$points += $class->getPointsValue($widget);
 
-			if ($points >= $this->POINTS) {
+			if ($points >= $this::POINTS) {
 				$points = 0;
 				$widgetsWithAds[] = ['layout' => 'ad'];
 			}
