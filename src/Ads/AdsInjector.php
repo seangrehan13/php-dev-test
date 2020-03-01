@@ -14,33 +14,34 @@ class AdsInjector implements AdsInjectorInterface
 		$this->factory = WidgetFactory::getInstance();
 	}
 
-	public function inject(array $article) : array
+	public function inject(array $article, array $advert) : array
 	{
 		if (!isset($article['widgets'])) {
 			return $article;
 		}
 
-		$points = 0;
-		// create new empty array
-		$widgetsWithAds = [];
+		$time_start = microtime();
 
-		foreach ($article['widgets'] as $widget) {
-			$class = $this->factory->create($widget['layout']);
-			$points += $class->getPointsValue($widget);
+		$points = 0;
+		$widgetsLength = count($article['widgets']);
+
+		// for loop is faster than foreach
+		for ($i = 0; $widgetsLength > $i; $i++) {
+			$class = $this->factory->create($article['widgets'][$i]['layout']);
+			$points += $class->getPointsValue($article['widgets'][$i]);
 
 			if ($points >= $this::POINTS) {
 				// reset points counter
 				$points = 0;
 				// if points are equal or more than 3.5 then add an ad before the next widget
-				$widgetsWithAds[] = ['layout' => 'ad'];
+				array_splice($article['widgets'], $i, 0, $advert);
 			}
-
-			// add widget to new array
-			$widgetsWithAds[] = $widget;
 		}
 
-		// after loop overwrite with new array
-		$article['widgets'] = $widgetsWithAds;
+		$time_end = microtime();
+		$time = $time_end - $time_start;
+
+		die($time);
 
 		return $article;
 	}
