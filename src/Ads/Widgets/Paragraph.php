@@ -8,7 +8,9 @@ class Paragraph implements WidgetInterface
 	{
         $points = 0;
         if (isset($widget['text'])) {
-            $points = strlen($widget['text']) / 1000;
+            $filteredText = strlen(strip_tags($widget['text']));
+            // prevent error if strlen = 0
+            $points = $filteredText > 0 ? $filteredText / 1000 : 0;
         }
 
 		return $points;
