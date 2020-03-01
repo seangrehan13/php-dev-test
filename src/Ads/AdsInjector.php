@@ -20,19 +20,19 @@ class AdsInjector implements AdsInjectorInterface
 			return $article;
 		}
 
-		$points = 0;
-		$widgetsLength = count($article['widgets']);
+		$points = $adsCounter = 0;
 
-		// for loop is faster than foreach
-		for ($i = 0; $widgetsLength > $i; $i++) {
-			$class = $this->factory->create($article['widgets'][$i]['layout']);
-			$points += $class->getPointsValue($article['widgets'][$i]);
+		foreach ($article['widgets'] as $widget) {
+			$class = $this->factory->create($widget['layout']);
+			$points += $class->getPointsValue($widget);
+			// use counter instead of array key incase key is not int
+			$adsCounter++;
 
 			if ($points >= $this::POINTS) {
 				// reset points counter
 				$points = 0;
 				// if points are equal or more than 3.5 then add an ad before the next widget
-				array_splice($article['widgets'], $i, 0, $advert);
+				array_splice($article['widgets'], $adsCounter, 0, $advert);
 			}
 		}
 
