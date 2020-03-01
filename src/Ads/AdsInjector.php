@@ -20,8 +20,6 @@ class AdsInjector implements AdsInjectorInterface
 			return $article;
 		}
 
-		$time_start = microtime();
-
 		$points = 0;
 		$widgetsLength = count($article['widgets']);
 
@@ -37,11 +35,6 @@ class AdsInjector implements AdsInjectorInterface
 				array_splice($article['widgets'], $i, 0, $advert);
 			}
 		}
-
-		$time_end = microtime();
-		$time = $time_end - $time_start;
-
-		die($time);
 
 		return $article;
 	}
