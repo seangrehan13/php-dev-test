@@ -1,18 +1,16 @@
 <?php
 declare(strict_types = 1);
 
-namespace BackendApp;
+namespace PHPUnit\Framework;
 
-use BackendApp\Repository\RepositoryInterface;
-use BackendApp\Ads\AdsInjectorInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
- * The most beautiful backend app ever made!
+ * Test for BackendApp class
  */
-class BackendApp
+final class BackendAppTest extends TestCase
 {
-    private $repository;
-    private $adsInjector;
+	// public function testCanCreatedFromValid
 
     public function __construct(RepositoryInterface $repository, AdsInjectorInterface $adsInjector)
     {
